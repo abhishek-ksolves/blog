@@ -1,0 +1,19 @@
+<p>
+  <strong>Commenter:</strong>
+  <%= image_tag comment.user.avatar.variant(resize_to_limit: [20, 20]) %>
+  <%= comment.commenter %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+<%# if user_signed_in? %>
+   <%# if current_user.id == comment.user_id %>
+<% if can? :destroy, comment %>
+
+   <p><%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+<% end %>
+ <%# end %>
+ <%# end %>

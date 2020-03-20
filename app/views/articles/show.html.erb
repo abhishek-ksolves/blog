@@ -1,0 +1,71 @@
+<p class="alert alert-success "><%= pluralize(@article.comments.size, "user") %> commented on this Article.</p>
+<% com = 0 %>
+<% @article.comments.each do |comment| %>
+      <% if user_signed_in? %>
+        <% if current_user.id == comment.user_id %>
+        <% com = com + 1 %>
+        <% end %>
+        <% end %>
+        <% end %><p class="alert alert-warning" > You have added <%= pluralize(com, "comment") %> on this Article.</p>
+<%= image_tag @article.picture.name.url %>
+<h3>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</h3>
+<h3>
+  <strong>Text:</strong>
+  <%= @article.text %>
+</h3>
+
+
+
+
+
+<label id="linkcount"><%= @article.thumbs.count %></label> Likes
+
+<%# if @thumb_id.present? %>
+<%= button_tag 'Dislike', onclick: "dislike(#{@article.id}, #{@thumb_id})" %>
+<%#else%>
+<%= button_tag 'Like', onclick: "like(#{@article.id})" %>
+<%#end%>
+<br>
+<%= render @article.comments %>
+<br>
+
+<h2>Comments</h2>
+<h2>Add a comment:</h2>
+
+<%= render 'comments/form' %>
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+
+
+<script>
+  function like(id) {
+  // debugger
+    $.ajax({
+        url: "/articles/" + id + "/thumbs",
+        type: 'POST',
+        success: function(data){
+          $('#linkcount').html(data.count);
+
+        },
+        error: function(error){
+           alert(error);
+        }
+     });
+   }
+ function dislike(id, ids) {
+   //debugger
+   $.ajax({
+       url: "/articles/" + id + "/thumbs/" + ids,
+       type: 'DELETE',
+       success: function(data){
+         $('#linkcount').html(data.count);
+
+       },
+       error: function(error){
+          alert(error);
+       }
+    });}
+</script>

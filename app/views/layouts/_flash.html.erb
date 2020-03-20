@@ -1,0 +1,10 @@
+<div class='float-left'>
+<% flash.each do |type, msg| %> 
+    <% if notice %>
+    <p class="alert alert-success "><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger "><%= alert %></p>
+    <% end %>
+<% end %>
+</div>

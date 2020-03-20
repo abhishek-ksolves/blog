@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/navigation' %>
+
+    <div class="container">
+
+      <%= render 'layouts/flash' %>
+
+      <div class="container">
+
+        <%= yield %>
+        <!--  <p>User address is :
+        <%#= current_user.address.add%>
+        </p>-->
+      </div>
+
+    </div>
+  </body>
+</html>
