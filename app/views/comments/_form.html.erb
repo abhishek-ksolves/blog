@@ -1,7 +1,12 @@
 <%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
-<%= form.hidden_field :user_id, :value => current_user.id %>
-<%= form.hidden_field :commenter, :value => current_user.username %>
+<!--testing-->
+<%#= form.hidden_field :user_id, :value => current_user.id %>
+<%#= form.hidden_field :commenter, :value => current_user.username %>
   <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_area :commenter %>
+    </p>
+    <p>
     <%= form.label :body %><br>
     <%= form.text_area :body %>
   </p>
