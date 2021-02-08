@@ -54,7 +54,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'activerecord-session_store'
 
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 
 gem 'pry'
 
